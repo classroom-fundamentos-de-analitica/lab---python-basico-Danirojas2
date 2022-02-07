@@ -1,11 +1,26 @@
+"""
+Laboratorio de Programación Básica en Python para Manejo de Datos
+-----------------------------------------------------------------------------------------
 
-#Lectura y limpieza de los datos
+Este archivo contiene las preguntas que se van a realizar en el laboratorio.
+
+No puede utilizar pandas, numpy o scipy. Se debe utilizar solo las funciones de python
+básicas.
+
+Utilice el archivo `data.csv` para resolver las preguntas.
+
+
+"""
+# Lectura
 with open("./data.csv", "r") as file:
     datos = file.readlines()
-datos1 = [line.replace("\n", "") for line in datos]
 
-#Convertir a listas
-datosL = [line.split("\t") for line in datoscsv]
+# Limpieza
+
+datoscsv = [line.replace("\n", "") for line in datos]
+
+# conversion a listas
+datosPreparados = [line.split("\t") for line in datoscsv]
 
 
 def pregunta_01():
@@ -17,7 +32,7 @@ def pregunta_01():
 
     """
     sum = 0
-    for dato in datosL:
+    for dato in datosPreparados:
         sum += int(dato[1])
     return sum
 
@@ -37,19 +52,19 @@ def pregunta_02():
     ]
 
     """
-    lista1 = []
-    lista2 = []
-    for dato in datosL:
+    listaK = []
+    listaN = []
+    for dato in datosPreparados:
         letra = dato[0]
-        if letra in lista1:
-            val = lista1.index(letra)
-            lista2[val] += 1
+        if letra in listaK:
+            val = listaK.index(letra)
+            listaN[val] += 1
         else:
-            lista1.append(letra)
-            lista2.append(1)
+            listaK.append(letra)
+            listaN.append(1)
 
-    listaF = list(zip(lista1, lista1))
-    return sorted(listaF, key=lambda tup: tup[0])
+    lista = list(zip(listaK, listaN))
+    return sorted(lista, key=lambda tup: tup[0])
 
 
 def pregunta_03():
@@ -67,18 +82,18 @@ def pregunta_03():
     ]
 
     """
-    lista1 = []
-    lista2 = []
-    for dato in datosL:
+    listaK = []
+    listaN = []
+    for dato in datosPreparados:
         letra = dato[0]
-        if letra in lista1:
-            val = lista1.index(letra)
-            lista2[val] += int(dato[1])
+        if letra in listaK:
+            val = listaK.index(letra)
+            listaN[val] += int(dato[1])
         else:
-            lista1.append(letra)
-            lista2.append(int(dato[1]))
+            listaK.append(letra)
+            listaN.append(int(dato[1]))
 
-    listaF = list(zip(lista1, lista2))
+    lista = list(zip(listaK, listaN))
     return sorted(lista, key=lambda tup: tup[0])
 
 
@@ -104,19 +119,19 @@ def pregunta_04():
     ]
 
     """
-    lista1 = []
-    lista2 = []
-    for dato in datosL:
+    listaK = []
+    listaN = []
+    for dato in datosPreparados:
         fecha = dato[2].split('-')
         mes = fecha[1]
-        if mes in lista1:
-            val = lista1.index(mes)
-            lista2[val] += 1
+        if mes in listaK:
+            val = listaK.index(mes)
+            listaN[val] += 1
         else:
-            lista1.append(mes)
+            listaK.append(mes)
             listaN.append(1)
-    listaF = list(zip(lista1, lista2))
-    return sorted(listaF, key=lambda tup: tup[0])
+    lista = list(zip(listaK, listaN))
+    return sorted(lista, key=lambda tup: tup[0])
 
 
 def pregunta_05():
@@ -134,25 +149,25 @@ def pregunta_05():
     ]
 
     """
-    lista1 = []
-    lista2 = []
+    listaK = []
+    listaT = []
     listaMax = []
     listaMin = []
 
-    for dato in datosL:
+    for dato in datosPreparados:
         letra = dato[0]
-        if letra in lista1:
-            val = lista1.index(letra)
-            lista2[val].append(int(dato[1]))
+        if letra in listaK:
+            val = listaK.index(letra)
+            listaT[val].append(int(dato[1]))
         else:
-            lista1.append(letra)
-            lista2.append([int(dato[1])])
-    for ele in lista2:
+            listaK.append(letra)
+            listaT.append([int(dato[1])])
+    for ele in listaT:
         listaMax.append(max(ele))
         listaMin.append(min(ele))
 
-    listaF = list(zip(lista1, listaMax, listaMin))
-    return sorted(listaF, key=lambda tup: tup[0])
+    lista = list(zip(listaK, listaMax, listaMin))
+    return sorted(lista, key=lambda tup: tup[0])
 
 
 def pregunta_06():
